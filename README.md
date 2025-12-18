@@ -21,13 +21,9 @@ Solutions are implemented in different languages displaying my aventure through 
 
 ## Overview
 
-With the Google Sheets challenges, I could get surprisingly far ome years! Each Year has it's own file with different individual sheets for each day. Most puzzles are solved through seperating steps into different columns.
+When solving puzzles with **Google Sheets**, I could get surprisingly far some years! Each Year has it's own file with different individual sheets for each day. Most puzzles are solved through seperating steps into different columns.
 
 When using Google Apps Script, the data is parsed from the sheets. Some sheets have Custom menus to run the scripts from the UI.
 
-Some solutions rely on **Google Sheets** to store and manage input data for Apps Script. Links to the sheets are provided below.
-
----
-
-## Structure
+After getting confortable with vscode, github and other dev tools, things changed. When solving with python, I fetch the input data for each day using my session cookie and go from there!
 
