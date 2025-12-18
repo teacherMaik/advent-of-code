@@ -15,7 +15,7 @@ Solutions are implemented in different languages displaying my aventure through 
 - [2024](#structure)  
 - [2023](#python-solutions)  
 - [2022](#getting-input)  
-- [2021](#running-solutions) 2⭐  (Not bad for first go!)
+- [2021](#running-solutions) - 2⭐ (Not bad for first go!)
 
 ---
 
