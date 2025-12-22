@@ -40,20 +40,85 @@ with cache_file.open() as f:
         parts = line.split(',')
         dataArr.extend(parts)
 
-    print(len(dataArr))
-    print(dataArr[0])
-
+    print("Starting Day 2 Part 1")
+    badIds = []
+    badIdSum = 0
 
     for data in dataArr:
         limits = data.split('-')
         start = int(limits[0].strip())
         finish = int(limits[1].strip())
 
-        print(start, finish)
-
         num = start
         while num <= finish:
             numStr = str(num)
-            print(numStr)
+            if len(numStr) % 2 == 0:
+                half = len(numStr) // 2
+                if (numStr[:half] == numStr[half:]):
+                    badIds.append(num)
+                    badIdSum += num
 
             num += 1
+
+    print(f"Answer to Day 2 Part 1 -> {badIdSum}")
+
+
+with cache_file.open() as f:
+    
+    dataArr = []
+    for line in f:
+
+        line = line.strip()
+        if not line:
+            continue
+
+        parts = line.split(',')
+        dataArr.extend(parts)
+
+    badIds = []
+    badIdSum = 0
+
+    print("Starting Day 2 Part 2")
+
+    for data in dataArr:
+
+        limits = data.split('-')
+        start = int(limits[0].strip())
+        finish = int(limits[1].strip())
+
+        num = start
+
+        while num < finish:
+            numStr = str(num)
+            numStrLen = len(numStr)
+
+            splitPos = 1
+            while splitPos < numStrLen:
+
+                if numStrLen % splitPos != 0:
+                    splitPos += 1
+                    continue
+
+                digitPattern = numStr[:splitPos]
+                badId = True
+
+                charPos = splitPos
+                while charPos < numStrLen:
+
+                    if numStr[charPos : charPos + splitPos] != digitPattern:
+                        badId = False
+                        break
+
+                    charPos += splitPos
+
+                splitPos += 1
+
+                if badId:
+                    badIds.append(num)
+                    badIdSum += num
+                    break
+
+            num += 1
+
+
+    print(f"Answer to Day 2 Part 2 -> {badIdSum}")

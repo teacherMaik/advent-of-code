@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 import math
 
-# Add root folder to path so we can import python_utils
+# Add root folder to path so we can import python_utils. Root is 3 leves up from here
 ROOT = Path(__file__).parent.parent.parent.resolve()
 sys.path.insert(0, str(ROOT))
 
@@ -12,13 +12,15 @@ day = 1
 year = 2025
 
 data = get_input(day, year)
-print(f"Input for {year}-Day {day}:\n{data[:100]}...")  # just print first 100 chars
 
-# --- Cache file path (same folder as script) ---
+## Preview up to 100 charcaters of the loaded input
+print(f"Input for {year}-Day {day}:\n{data[:100]}...")
+
+# Cache file path (same folder as script)
 script_folder = Path(__file__).parent
 cache_file = script_folder / f"day_{day}_data.txt"
 
-# --- Load input ---
+# Load input from cached file if already exists, otherwise use utils module to load from AoC
 if cache_file.exists():
     data = cache_file.read_text()
     print(f"Loaded input for {year}-Day {day} from {cache_file.name}.")
@@ -35,9 +37,9 @@ with cache_file.open() as f:
     numNetZeros = 0
 
     for line in f:
-        line = line.strip()  # remove trailing newline
+        line = line.strip()
         if not line:
-            continue  # skip empty lines
+            continue
         
         # Separate letters from numbers
         direction = line[0]
@@ -61,14 +63,14 @@ with cache_file.open() as f:
     numNetZeros = 0
 
     for line in f:
-        line = line.strip()  # remove trailing newline
+        line = line.strip()
         if not line:
-            continue  # skip empty lines
+            continue
 
-        # Separate letters from numbers
         direction = line[0]
         clicks = int(line[1:])
 
+        ## Cal num of full turns (100's) add them to netZeros and get remaining clicks
         fullTurns = math.floor(clicks / 100)
         remainingClicks = clicks % 100
 
@@ -83,6 +85,7 @@ with cache_file.open() as f:
         else:
             end = dialPos - remainingClicks
 
+            ## Edge case if turning left from 0
             if dialPos == 0:
                 if remainingClicks == 100:
                     numNetZeros += 1
